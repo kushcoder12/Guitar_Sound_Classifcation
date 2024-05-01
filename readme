@@ -110,10 +110,4 @@ Model: "sequential_5"
 - Explore additional features and data augmentation techniques.
 - Deploy the trained model for real-time sound classification applications.
 
-## Contributors
 
-- [Your Name](link_to_profile)
-
-## License
-
-This project is licensed under the [MIT License](LICENSE).
