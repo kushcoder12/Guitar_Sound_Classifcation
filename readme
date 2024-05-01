@@ -1,0 +1,119 @@
+# Sound Classification with Machine Learning
+
+This repository contains code for a sound classification project using a deep neural network. The goal of this project is to classify sounds into 14 different classes, including musical notes (A-G), percussion sounds (Barrel, Flage, Poffhon, Slap), and non-sound (Silence).
+
+## About the Data
+
+Samples num: 234
+Columns num: 3
+
+| Sample                                  | Class_ID | Class |
+|-----------------------------------------|----------|-------|
+| ./input/notes_v2/A/A1.wav              | 1        | A     |
+| ./input/notes_v2/A/A1.wav_000.wav      | 1        | A     |
+| ./input/notes_v2/A/A1.wav_010.wav      | 1        | A     |
+| ./input/notes_v2/A/A2.wav              | 1        | A     |
+| ./input/notes_v2/A/A2.wav_001.wav      | 1        | A     |
+
+
+## About the classes
+
+| Class_ID | Class    |
+|----------|----------|
+| 1        | [A]      |
+| 2        | [B]      |
+| 3        | [C]      |
+| 4        | [D]      |
+| 5        | [E]      |
+| 6        | [F]      |
+| 7        | [G]      |
+| 8        | [Barrel] |
+| 9        | [Flage]  |
+| 10       | [PoffHon]|
+| 11       | [Slap]   |
+| 12       | [Slide]  |
+| 13       | [Silence]|
+
+## Splt (Test/Train/Valiidatiion)
+
+Number of samples for Train set : 168
+Number of samples for Validation set : 42
+Number of samples for Test set : 24
+
+## Model Architecture
+
+The model architecture consists of several dense layers:
+
+Model: "sequential_5"
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━┓
+┃ Layer (type)                    ┃ Output Shape           ┃       Param # ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━┩
+│ dense_35 (Dense)                │ (None, 1024)           │       284,672 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dense_36 (Dense)                │ (None, 512)            │       524,800 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dense_37 (Dense)                │ (None, 256)            │       131,328 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dense_38 (Dense)                │ (None, 128)            │        32,896 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dense_39 (Dense)                │ (None, 64)             │         8,256 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dense_40 (Dense)                │ (None, 32)             │         2,080 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dense_41 (Dense)                │ (None, 14)             │           462 │
+└─────────────────────────────────┴────────────────────────┴───────────────┘
+ Total params: 984,494 (3.76 MB)
+ Trainable params: 984,494 (3.76 MB)
+ Non-trainable params: 0 (0.00 B)
+
+## Veriification of Result
+
+| Epoch | Accuracy | Loss     | Val Accuracy | Val Loss  | Learning Rate |
+|-------|----------|----------|--------------|-----------|---------------|
+| 0     | 0.434524 | 6.048599 | 0.571429     | 6.642789  | 0.0010        |
+| 1     | 0.541667 | 3.345503 | 0.500000     | 2.776428  | 0.0010        |
+| 2     | 0.648810 | 1.685596 | 0.523810     | 2.669680  | 0.0010        |
+| 3     | 0.720238 | 1.463104 | 0.761905     | 1.569640  | 0.0010        |
+| 4     | 0.803571 | 1.109717 | 0.904762     | 1.432348  | 0.0010        |
+| ...   | ...      | ...      | ...          | ...       | ...           |
+| 75    | 1.000000 | 0.388564 | 0.928571     | 1.064432  | 0.0001        |
+| 76    | 1.000000 | 0.388155 | 0.928571     | 1.070938  | 0.0001        |
+| 77    | 1.000000 | 0.387759 | 0.928571     | 1.068923  | 0.0001        |
+| 78    | 1.000000 | 0.387358 | 0.928571     | 1.076202  | 0.0001        |
+| 79    | 1.000000 | 0.386985 | 0.928571     | 1.083954  | 0.0001        |
+
+
+## Results
+
+|   | A | B | C | D | E | F | G | Barrel | Flage | PoffHon | Slap | Slide | Silence |
+|---|---|---|---|---|---|---|---|--------|-------|---------|------|-------|---------|
+| A | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 0      | 0     | 0       | 0    | 0     | 0       |
+| B | 0 | 1 | 1 | 0 | 0 | 0 | 0 | 0      | 0     | 0       | 0    | 0     | 0       |
+| C | 0 | 0 | 2 | 0 | 0 | 0 | 0 | 0      | 0     | 0       | 0    | 0     | 0       |
+| D | 0 | 0 | 0 | 2 | 0 | 0 | 0 | 0      | 0     | 0       | 0    | 0     | 0       |
+| E | 0 | 0 | 0 | 0 | 2 | 0 | 0 | 0      | 0     | 0       | 0    | 0     | 0       |
+| F | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 0      | 0     | 0       | 0    | 0     | 0       |
+| G | 0 | 0 | 0 | 0 | 0 | 0 | 2 | 0      | 0     | 0       | 0    | 0     | 0       |
+| Barrel | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1  | 0     | 0       | 0    | 1     | 0       |
+| Flage  | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0  | 1     | 0       | 0    | 0     | 0       |
+| PoffHon| 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0  | 0     | 2       | 0    | 0     | 0       |
+| Slap   | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0  | 0     | 0       | 2    | 0     | 0       |
+| Slide  | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0  | 0     | 0       | 0    | 2     | 0       |
+| Silence| 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0  | 0     | 0       | 0    | 0     | 2       |
+
+
+
+## Future Work
+
+- Experiment with different machine learning algorithms and architectures.
+- Fine-tune hyperparameters to improve model performance.
+- Explore additional features and data augmentation techniques.
+- Deploy the trained model for real-time sound classification applications.
+
+## Contributors
+
+- [Your Name](link_to_profile)
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
