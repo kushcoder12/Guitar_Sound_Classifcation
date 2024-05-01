@@ -2,6 +2,9 @@
 
 This repository contains code for a sound classification project using a deep neural network. The goal of this project is to classify sounds into 14 different classes, including musical notes (A-G), percussion sounds (Barrel, Flage, Poffhon, Slap), and non-sound (Silence).
 
+## DataSet Link
+https://www.kaggle.com/datasets/godovorez/guitar-sounds/data
+
 ## About the Data
 
 Samples num: 234
